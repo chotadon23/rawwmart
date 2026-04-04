@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RAWWMART — Raw Materials, Delivered Fast</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #FF5C1A;
+    --green:  #1DB954;
+    --dark:   #0F0F0F;
+    --card:   #181818;
+    --muted:  #888;
+    --white:  #FFFFFF;
+    --font-display: 'Archivo Black', sans-serif;
+    --font-body:    'Outfit', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 6vw;
+    background: rgba(15,15,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    letter-spacing: -1px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .logo span { color: var(--orange); }
+
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 26px;
+    border-radius: 40px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,92,26,0.3); }
+  .btn-primary { background: var(--orange); color: #fff; border: none; }
+  .btn-outline  { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.25); }
+  .btn-outline:hover { border-color: var(--orange); color: var(--orange); box-shadow: none; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 92vh;
+    display: flex; align-items: center;
+    padding: 80px 6vw 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(255,92,26,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(29,185,84,0.08) 0%, transparent 60%);
+  }
+
+  /* geometric accent shapes */
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    top: 15%; right: 5%;
+    width: 380px; height: 380px;
+    border: 1.5px solid rgba(255,92,26,0.15);
+    border-radius: 50%;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 10%; right: 12%;
+    width: 200px; height: 200px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transform: rotate(45deg);
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 680px; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,92,26,0.12);
+    border: 1px solid rgba(255,92,26,0.3);
+    border-radius: 40px;
+    padding: 6px 16px;
+    font-size: 0.82rem;
+    color: var(--orange);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 .accent { color: var(--orange); }
+  .hero h1 .accent2 { color: var(--green); }
+
+  .hero p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 40px;
+    font-weight: 300;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 60px;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--white);
+  }
+  .stat-num span { color: var(--orange); }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── HOW IT WORKS ── */
+  .section {
+    padding: 100px 6vw;
+  }
+  .section-tag {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 480px;
+    line-height: 1.7;
+    margin-bottom: 60px;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .step-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 18px;
+    padding: 32px 28px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .step-card:hover { border-color: rgba(255,92,26,0.4); transform: translateY(-4px); }
+
+  .step-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  .icon-orange { background: rgba(255,92,26,0.15); }
+  .icon-green  { background: rgba(29,185,84,0.12); }
+  .icon-blue   { background: rgba(59,130,246,0.12); }
+  .icon-yellow { background: rgba(250,204,21,0.12); }
+
+  .step-num {
+    font-size: 0.75rem;
+    color: var(--orange);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .step-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+  .step-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── ABOUT US ── */
+  .about { background: rgba(255,92,26,0.04); border-top: 1px solid rgba(255,92,26,0.1); border-bottom: 1px solid rgba(255,92,26,0.1); }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+    height: 320px;
+  }
+
+  .about-card {
+    position: absolute;
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 22px 24px;
+  }
+  .about-card:first-child { top: 0; left: 0; right: 60px; }
+  .about-card:nth-child(2) { bottom: 0; left: 60px; right: 0; }
+
+  .card-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 6px; }
+  .card-value { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); }
+  .card-sub   { font-size: 0.82rem; color: var(--green); margin-top: 4px; }
+
+  .about-text .section-sub { margin-bottom: 32px; }
+
+  .about-feature {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-bottom: 22px;
+  }
+  .feature-dot {
+    width: 28px; height: 28px; flex-shrink: 0;
+    border-radius: 8px;
+    background: rgba(255,92,26,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+    margin-top: 2px;
+  }
+  .about-feature h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+  .about-feature p  { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── CTA BANNER ── */
+  .cta-section {
+    padding: 80px 6vw;
+    text-align: center;
+  }
+  .cta-box {
+    background: var(--card);
+    border: 1px solid rgba(255,92,26,0.2);
+    border-radius: 28px;
+    padding: 70px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, rgba(255,92,26,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-box h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .cta-box p {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 36px;
+    font-weight: 300;
+    position: relative;
+  }
+  .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px 6vw;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  footer p { font-size: 0.82rem; color: var(--muted); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-visual { height: 200px; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .nav-links a:not(:last-child) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a href="#" class="logo">RAWW<span>MART</span></a>
+  <div class="nav-links">
+    <a href="#how-it-works">How it works</a>
+    <a href="#about">About us</a>
+    <a href="page2.html" class="btn btn-primary">Sign In</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Now live in your city</div>
+    <h1>
+      Raw materials,<br/>
+      <span class="accent">delivered</span> to your<br/>
+      <span class="accent2">stall.</span>
+    </h1>
+    <p>
+      RAWWMART connects street vendors and small shop owners directly with nearby raw material suppliers — within 5 to 10 km. No middlemen. No delays.
+    </p>
+    <div class="hero-actions">
+      <a href="page2.html" class="btn btn-primary">Get Started →</a>
+      <a href="#how-it-works" class="btn btn-outline">See how it works</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">500<span>+</span></div>
+        <div class="stat-label">Suppliers onboarded</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2K<span>+</span></div>
+        <div class="stat-label">Vendors registered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10<span>km</span></div>
+        <div class="stat-label">Hyperlocal delivery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="section" id="how-it-works">
+  <div class="section-tag">How it works</div>
+  <div class="section-title">Simple. Fast. Local.</div>
+  <p class="section-sub">From searching to doorstep delivery — the entire flow happens in minutes.</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-icon icon-orange">🛒</div>
+      <div class="step-num">STEP 01</div>
+      <h3>Vendor searches</h3>
+      <p>Street vendors search for the raw materials they need, just like an online shopping app.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-icon icon-green">📍</div>
+      <div class="step-num">STEP 02</div>
+      <h3>Nearby suppliers appear</h3>
+      <p>Suppliers within 5-10 km are recommended automatically based on location and stock.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-icon icon-blue">📦</div>
+      <div class="step-num">STEP 03</div>
+      <h3>Order is placed</h3>
+      <p>The vendor places the order. A notification instantly reaches the supplier.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-icon icon-yellow">🚚</div>
+      <div class="step-num">STEP 04</div>
+      <h3>Supplier delivers</h3>
+      <p>The supplier accepts, prepares the order, and delivers it directly to the vendor's stall.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT US ── -->
+<section class="section about" id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-card">
+        <div class="card-label">Orders this week</div>
+        <div class="card-value">1,248</div>
+        <div class="card-sub">↑ 18% from last week</div>
+      </div>
+      <div class="about-card">
+        <div class="card-label">Avg. delivery time</div>
+        <div class="card-value">42 min</div>
+        <div class="card-sub">Within city limits</div>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <div class="section-tag">About us</div>
+      <div class="section-title">Built for the<br/>everyday seller</div>
+      <p class="section-sub">
+        RAWWMART was born from a simple idea — small vendors shouldn't have to travel far or deal with unreliable sources to get their raw materials. We bring the supply chain to their doorstep.
+      </p>
+
+      <div class="about-feature">
+        <div class="feature-dot">✓</div>
+        <div>
+          <h4>GST-verified suppliers</h4>
+          <p>Every supplier on our platform is verified with their GST number for trust and compliance.</p>
+        </div>
+      </div>
+      <div class="about-feature">
+        <div class="feature-dot">📍</div>
+        <div>
+          <h4>Hyperlocal 5-10 km network</h4>
+          <p>We match vendors with the closest available supplier to ensure fast, fresh delivery.</p>
+        </div>
+      </div>
+      <div class="about-feature">
+        <div class="feature-dot">🔔</div>
+        <div>
+          <h4>Real-time order alerts</h4>
+          <p>Suppliers get instant notifications and can accept or decline orders with one tap.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Ready to join RAWWMART?</h2>
+    <p>Sign up as a vendor to order raw materials, or as a supplier to start delivering.</p>
+    <div class="cta-actions">
+      <a href="page2.html" class="btn btn-primary">Sign In / Register →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <a href="#" class="logo" style="font-size:1.2rem;">RAWW<span style="color:var(--orange)">MART</span></a>
+  <p>© 2025 RAWWMART. All rights reserved.</p>
+  <p style="color:var(--muted);">Made with ❤️ for street vendors of India</p>
+</footer>
+
+</body>
+</html>

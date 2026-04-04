@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RAWWMART — Supplier Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #1DB954; --dark: #0F0F0F; --card: #181818;
+    --card2: #1E1E1E; --muted: #888; --white: #FFFFFF;
+    --border: rgba(255,255,255,0.09);
+    --font-display: 'Archivo Black', sans-serif;
+    --font-body: 'Outfit', sans-serif;
+  }
+  body { background: var(--dark); color: var(--white); font-family: var(--font-body); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; }
+  a.logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing:-1px; color:var(--white); text-decoration:none; margin-bottom: 36px; }
+  a.logo span { color: #FF5C1A; }
+  .form-box { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 40px 36px; width: 100%; max-width: 480px; }
+  .form-header { margin-bottom: 28px; }
+  .form-header h1 { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .form-header p  { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
+  .tabs { display: flex; background: var(--dark); border-radius: 10px; padding: 4px; margin-bottom: 28px; }
+  .tab { flex:1; text-align:center; padding:9px; border-radius:8px; font-size:0.88rem; font-weight:500; cursor:pointer; color:var(--muted); transition:all 0.2s; }
+  .tab.active { background: var(--green); color: #fff; }
+  .step { display: none; }
+  .step.active { display: block; }
+  label { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 6px; }
+  input[type=text], input[type=email], input[type=tel], input[type=password] {
+    width: 100%; background: var(--card2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px; color: var(--white);
+    font-family: var(--font-body); font-size: 0.95rem;
+    outline: none; transition: border-color 0.2s; margin-bottom: 18px;
+  }
+  input:focus { border-color: var(--green); }
+  input::placeholder { color: rgba(255,255,255,0.2); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .otp-group { display: flex; gap: 10px; margin-bottom: 18px; }
+  .otp-group input { flex:1; text-align:center; font-size:1.3rem; font-weight:600; padding:14px 4px; letter-spacing:4px; margin-bottom:0; }
+  .send-btn { width: 100%; padding: 12px; background: rgba(29,185,84,0.1); border: 1px solid rgba(29,185,84,0.3); border-radius: 10px; color: var(--green); font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; cursor: pointer; margin-bottom: 18px; transition: background 0.2s; }
+  .send-btn:hover { background: rgba(29,185,84,0.2); }
+  .btn-main { width: 100%; padding: 14px; background: var(--green); border: none; border-radius: 12px; color: #fff; font-family: var(--font-body); font-size: 1rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; margin-top: 6px; }
+  .btn-main:hover { opacity: 0.9; }
+  .btn-main:disabled { opacity: 0.5; cursor: not-allowed; }
+  .note { font-size: 0.8rem; color: var(--muted); margin-top: 18px; text-align: center; }
+  .note a { color: var(--green); text-decoration: none; cursor: pointer; }
+  .success-msg { display: none; background: rgba(29,185,84,0.1); border: 1px solid rgba(29,185,84,0.25); border-radius: 12px; padding: 14px; font-size: 0.88rem; color: var(--green); margin-bottom: 16px; text-align: center; }
+  .error-msg { display: none; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 12px; padding: 14px; font-size: 0.88rem; color: #F87171; margin-bottom: 16px; text-align: center; }
+  .gst-row { display: flex; gap: 10px; align-items: flex-start; }
+  .gst-row input { flex:1; margin-bottom:0; }
+  .verify-btn { padding: 12px 18px; background: rgba(29,185,84,0.15); border: 1px solid rgba(29,185,84,0.3); border-radius: 10px; color: var(--green); font-family: var(--font-body); font-size: 0.88rem; font-weight: 600; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: background 0.2s; }
+  .verify-btn:hover { background: rgba(29,185,84,0.25); }
+  .step-indicator { display: flex; gap: 8px; margin-bottom: 24px; }
+  .step-dot { height: 4px; border-radius: 2px; flex: 1; background: var(--border); transition: background 0.3s; }
+  .step-dot.done { background: var(--green); }
+  .back-link { margin-top: 24px; font-size: 0.85rem; color: var(--muted); text-decoration: none; }
+  .back-link:hover { color: var(--white); }
+  .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; margin-right: 8px; vertical-align: middle; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<a href="page2.html" class="logo">RAWW<span>MART</span></a>
+
+<div class="form-box">
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('login')">Sign In</div>
+    <div class="tab" onclick="switchTab('register')">Register</div>
+  </div>
+
+  <!-- ── LOGIN ── -->
+  <div id="login-form">
+    <div class="form-header">
+      <h1>Supplier Login</h1>
+      <p>Welcome back! Sign in to manage orders.</p>
+    </div>
+    <div class="error-msg" id="login-error"></div>
+    <div class="success-msg" id="login-success"></div>
+    <label>Mobile number or Gmail</label>
+    <input type="text" id="login-id" placeholder="9876543210 or you@gmail.com"/>
+    <label>Password</label>
+    <input type="password" id="login-password" placeholder="Enter your password"/>
+    <button class="btn-main" onclick="doLogin()">Sign In</button>
+    <p class="note">New supplier? <a onclick="switchTab('register')">Register here</a></p>
+  </div>
+
+  <!-- ── REGISTER ── -->
+  <div id="register-form" style="display:none;">
+    <div class="form-header">
+      <h1>Supplier Registration</h1>
+      <p>Complete all steps to get verified.</p>
+    </div>
+    <div class="step-indicator">
+      <div class="step-dot" id="sdot1"></div>
+      <div class="step-dot" id="sdot2"></div>
+      <div class="step-dot" id="sdot3"></div>
+      <div class="step-dot" id="sdot4"></div>
+    </div>
+    <div class="error-msg" id="reg-error"></div>
+
+    <!-- Step 1: Details -->
+    <div class="step active" id="sstep1">
+      <label>Full name / Business name</label>
+      <input type="text" id="s-name" placeholder="Sharma Traders Pvt. Ltd."/>
+      <div class="row">
+        <div>
+          <label>Mobile number</label>
+          <input type="tel" id="s-mobile" placeholder="9876543210"/>
+        </div>
+        <div>
+          <label>Gmail address</label>
+          <input type="email" id="s-email" placeholder="you@gmail.com"/>
+        </div>
+      </div>
+      <label>Password</label>
+      <input type="password" id="s-password" placeholder="Create a password"/>
+      <label>Permanent address</label>
+      <input type="text" id="s-paddr" placeholder="45, Industrial Area, Pune"/>
+      <label>Warehouse / delivery address</label>
+      <input type="text" id="s-daddr" placeholder="Warehouse B3, MIDC Bhosari, Pune"/>
+      <button class="btn-main" onclick="goSStep(2)">Continue →</button>
+    </div>
+
+    <!-- Step 2: OTP -->
+    <div class="step" id="sstep2">
+      <label>Verify your mobile number</label>
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:14px;font-weight:300;">Enter the 6-digit OTP sent to your mobile.</p>
+      <button class="send-btn" onclick="sendOTP()">📱 Send OTP to mobile</button>
+      <label>Enter OTP</label>
+      <div class="otp-group">
+        <input type="text" maxlength="1" oninput="mOTP(this,1)"/>
+        <input type="text" maxlength="1" oninput="mOTP(this,2)"/>
+        <input type="text" maxlength="1" oninput="mOTP(this,3)"/>
+        <input type="text" maxlength="1" oninput="mOTP(this,4)"/>
+        <input type="text" maxlength="1" oninput="mOTP(this,5)"/>
+        <input type="text" maxlength="1" oninput="mOTP(this,6)"/>
+      </div>
+      <div class="success-msg" id="otp-ok">✓ Mobile verified!</div>
+      <button class="btn-main" onclick="verifyOTP()">Verify & Continue →</button>
+      <p class="note"><a onclick="goSStep(1)">← Back</a></p>
+    </div>
+
+    <!-- Step 3: GST -->
+    <div class="step" id="sstep3">
+      <label>GST Number (GSTIN)</label>
+      <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px;font-weight:300;">All suppliers must be GST registered. Enter your 15-digit GSTIN.</p>
+      <div class="gst-row">
+        <input type="text" id="gst-input" placeholder="27AAPFU0939F1ZV" maxlength="15" style="text-transform:uppercase;letter-spacing:1px;"/>
+        <button class="verify-btn" onclick="verifyGST()">Verify</button>
+      </div>
+      <div class="success-msg" id="gst-ok">✓ GST verified successfully!</div>
+      <div class="error-msg" id="gst-fail">✗ Invalid GST number. Please check and try again.</div>
+      <button class="btn-main" id="gst-next-btn" onclick="doRegister()" style="margin-top:16px;" disabled>Complete Registration →</button>
+      <p class="note"><a onclick="goSStep(2)">← Back</a></p>
+    </div>
+
+    <!-- Step 4: Done -->
+    <div class="step" id="sstep4">
+      <div style="text-align:center;padding:20px 0;">
+        <div style="font-size:3rem;margin-bottom:16px;">✅</div>
+        <h2 style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:10px;">You're verified!</h2>
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:20px;font-weight:300;">Your supplier account is active. Vendors nearby can now find and order from you.</p>
+        <div style="background:rgba(29,185,84,0.08);border:1px solid rgba(29,185,84,0.2);border-radius:12px;padding:14px;margin-bottom:24px;font-size:0.85rem;color:var(--green);">
+          📍 You'll receive order notifications from vendors within 5–10 km.
+        </div>
+        <button class="btn-main" onclick="window.location.href='supplier-dashboard.html'">Go to Dashboard →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="page2.html" class="back-link">← Choose different role</a>
+
+<script>
+  function switchTab(t) {
+    document.querySelectorAll('.tab').forEach((el,i) => el.classList.toggle('active', (i===0&&t==='login')||(i===1&&t==='register')));
+    document.getElementById('login-form').style.display = t==='login' ? 'block' : 'none';
+    document.getElementById('register-form').style.display = t==='register' ? 'block' : 'none';
+  }
+
+  function goSStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('sstep'+n).classList.add('active');
+    for(let i=1;i<=4;i++) document.getElementById('sdot'+i).classList.toggle('done', i<n);
+  }
+
+  function mOTP(el, idx) {
+    if(el.value.length===1) {
+      const next = el.parentElement.children[idx];
+      if(next) next.focus();
+    }
+  }
+
+  function sendOTP() {
+    alert('OTP sent! (Demo: use any 6 digits)');
+  }
+
+  function verifyOTP() {
+    const otp = Array.from(document.querySelectorAll('.otp-group input')).map(i => i.value).join('');
+    if(otp.length < 6) { showError('reg-error','Enter full 6-digit OTP.'); return; }
+    document.getElementById('otp-ok').style.display = 'block';
+    setTimeout(() => goSStep(3), 800);
+  }
+
+  function verifyGST() {
+    const val = document.getElementById('gst-input').value.trim().toUpperCase();
+    const gstRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+    document.getElementById('gst-ok').style.display = 'none';
+    document.getElementById('gst-fail').style.display = 'none';
+    setTimeout(() => {
+      if(gstRegex.test(val)) {
+        document.getElementById('gst-ok').style.display = 'block';
+        document.getElementById('gst-next-btn').disabled = false;
+      } else {
+        document.getElementById('gst-fail').style.display = 'block';
+      }
+    }, 800);
+  }
+
+  async function doLogin() {
+    const emailOrMobile = document.getElementById('login-id').value.trim();
+    const password = document.getElementById('login-password').value.trim();
+    if(!emailOrMobile || !password) { showError('login-error','Please fill all fields.'); return; }
+    const btn = document.querySelector('#login-form .btn-main');
+    btn.innerHTML = '<span class="spinner"></span>Signing in...';
+    btn.disabled = true;
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ emailOrMobile, password })
+      });
+      const data = await res.json();
+      if(res.ok) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        document.getElementById('login-success').style.display = 'block';
+        document.getElementById('login-success').textContent = '✓ Login successful! Redirecting...';
+        setTimeout(() => window.location.href = 'supplier-dashboard.html', 1000);
+      } else {
+        showError('login-error', data.message || 'Login failed.');
+        btn.innerHTML = 'Sign In'; btn.disabled = false;
+      }
+    } catch(err) {
+      showError('login-error','Cannot connect to server.');
+      btn.innerHTML = 'Sign In'; btn.disabled = false;
+    }
+  }
+
+  async function doRegister() {
+    const name     = document.getElementById('s-name').value.trim();
+    const mobile   = document.getElementById('s-mobile').value.trim();
+    const email    = document.getElementById('s-email').value.trim();
+    const password = document.getElementById('s-password').value.trim();
+    const permanentAddress = document.getElementById('s-paddr').value.trim();
+    const deliveryAddress  = document.getElementById('s-daddr').value.trim();
+    const gstNumber = document.getElementById('gst-input').value.trim().toUpperCase();
+    if(!name||!mobile||!email||!password||!permanentAddress||!deliveryAddress) {
+      showError('reg-error','Please fill all fields.'); goSStep(1); return;
+    }
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, mobile, email, password,
+          role: 'supplier',
+          permanentAddress, deliveryAddress, gstNumber,
+          latitude: 18.5204, longitude: 73.8567
+        })
+      });
+      const data = await res.json();
+      if(res.ok) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        goSStep(4);
+      } else {
+        showError('reg-error', data.message || 'Registration failed.');
+        goSStep(1);
+      }
+    } catch(err) {
+      showError('reg-error','Cannot connect to server.');
+    }
+  }
+
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.style.display = 'block';
+    setTimeout(() => el.style.display = 'none', 4000);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RAWWMART — Sign In</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange: #FF5C1A;
+    --green:  #1DB954;
+    --dark:   #0F0F0F;
+    --card:   #181818;
+    --muted:  #888;
+    --white:  #FFFFFF;
+    --font-display: 'Archivo Black', sans-serif;
+    --font-body:    'Outfit', sans-serif;
+  }
+  body {
+    background: var(--dark); color: var(--white);
+    font-family: var(--font-body); min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .logo {
+    font-family: var(--font-display); font-size: 1.8rem;
+    letter-spacing: -1px; color: var(--white);
+    text-decoration: none; margin-bottom: 14px;
+  }
+  .logo span { color: var(--orange); }
+
+  .tagline {
+    font-size: 0.9rem; color: var(--muted);
+    margin-bottom: 52px; font-weight: 300;
+  }
+
+  .heading {
+    font-family: var(--font-display);
+    font-size: 1.6rem; letter-spacing: -1px;
+    margin-bottom: 10px; text-align: center;
+  }
+  .sub {
+    font-size: 0.9rem; color: var(--muted);
+    margin-bottom: 40px; text-align: center;
+    font-weight: 300;
+  }
+
+  .cards {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px; width: 100%; max-width: 580px;
+    margin-bottom: 36px;
+  }
+
+  .role-card {
+    background: var(--card);
+    border: 1.5px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    padding: 36px 28px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--white);
+    display: flex; flex-direction: column; align-items: flex-start;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .role-card:hover { transform: translateY(-5px); }
+  .role-card.vendor:hover { border-color: var(--orange); }
+  .role-card.supplier:hover { border-color: var(--green); }
+
+  .role-icon {
+    font-size: 2.2rem; margin-bottom: 20px;
+    width: 60px; height: 60px;
+    border-radius: 16px; display: flex; align-items: center; justify-content: center;
+  }
+  .vendor .role-icon  { background: rgba(255,92,26,0.12); }
+  .supplier .role-icon { background: rgba(29,185,84,0.12); }
+
+  .role-card h2 {
+    font-family: var(--font-display);
+    font-size: 1.2rem; margin-bottom: 8px; letter-spacing: -0.5px;
+  }
+  .role-card p {
+    font-size: 0.85rem; color: var(--muted); line-height: 1.6; font-weight: 300;
+  }
+
+  .role-badge {
+    margin-top: 20px; font-size: 0.78rem; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+  }
+  .vendor  .role-badge { background: rgba(255,92,26,0.15); color: var(--orange); }
+  .supplier .role-badge { background: rgba(29,185,84,0.12); color: var(--green); }
+
+  .divider {
+    display: flex; align-items: center; gap: 12px;
+    width: 100%; max-width: 580px;
+    color: var(--muted); font-size: 0.82rem; margin-bottom: 24px;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1;
+    height: 1px; background: rgba(255,255,255,0.08);
+  }
+
+  .back-link {
+    font-size: 0.85rem; color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--white); }
+
+  @media (max-width: 480px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="logo">RAWW<span>MART</span></a>
+<p class="tagline">Raw materials, delivered fast.</p>
+
+<h1 class="heading">Who are you?</h1>
+<p class="sub">Choose your role to continue signing in or registering.</p>
+
+<div class="cards">
+  <a href="vendor-login.html" class="role-card vendor">
+    <div class="role-icon">🛒</div>
+    <h2>I'm a Vendor</h2>
+    <p>I run a stall or small shop and need raw materials delivered to me.</p>
+    <div class="role-badge">Order materials →</div>
+  </a>
+  <a href="supplier-login.html" class="role-card supplier">
+    <div class="role-icon">🏭</div>
+    <h2>I'm a Supplier</h2>
+    <p>I supply raw materials and want to reach nearby vendors easily.</p>
+    <div class="role-badge">Start supplying →</div>
+  </a>
+</div>
+
+<div class="divider">or</div>
+<a href="index.html" class="back-link">← Back to home</a>
+
+</body>
+</html>
