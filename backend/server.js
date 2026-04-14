@@ -1,19 +1,13 @@
-// ─────────────────────────────────────────
-//  RAWWMART - Main Server File
-//  This is the "heart" of your backend.
-//  It starts a web server on your computer.
-// ─────────────────────────────────────────
-
-const express  = require('express');   // web server library
-const mongoose = require('mongoose');  // database library
-const cors     = require('cors');      // allows frontend to talk to backend
-const dotenv   = require('dotenv');    // reads your .env secret file
-const path     = require('path');      // helps with file paths
+const express  = require('express');
+const mongoose = require('mongoose');
+const cors     = require('cors');
+const path     = require('path');
 
 if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
+  require('dotenv').config();
 }
-const app = express(); // create the server
+
+const app = express();
 
 // ── MIDDLEWARE (things that run on every request) ──
 app.use(cors());                           // allow cross-origin requests
