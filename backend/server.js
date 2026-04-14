@@ -11,7 +11,7 @@ const dotenv   = require('dotenv');    // reads your .env secret file
 const path     = require('path');      // helps with file paths
 
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+  dotenv.config();
 }
 const app = express(); // create the server
 
