@@ -15,7 +15,7 @@
     --font-body: 'Outfit', sans-serif;
   }
   body { background: var(--dark); color: var(--white); font-family: var(--font-body); min-height: 100vh; }
-
+ 
   /* NAV */
   nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 28px; background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
   .logo { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: -1px; color: var(--white); text-decoration: none; }
@@ -24,21 +24,21 @@
   .user-name { font-size: 0.88rem; color: var(--muted); }
   .logout-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 7px 16px; border-radius: 20px; font-family: var(--font-body); font-size: 0.82rem; cursor: pointer; transition: all 0.2s; }
   .logout-btn:hover { border-color: var(--orange); color: var(--orange); }
-
+ 
   /* MAIN */
   .main { max-width: 900px; margin: 0 auto; padding: 36px 24px; }
-
+ 
   .welcome { margin-bottom: 32px; }
   .welcome h1 { font-family: var(--font-display); font-size: 1.8rem; letter-spacing: -1px; margin-bottom: 6px; }
   .welcome p  { color: var(--muted); font-size: 0.95rem; font-weight: 300; }
-
+ 
   /* STATS */
   .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 32px; }
   .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
   .stat-num { font-family: var(--font-display); font-size: 1.6rem; color: var(--white); }
   .stat-num span { color: var(--orange); }
   .stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
-
+ 
   /* SEARCH */
   .search-section { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; margin-bottom: 28px; }
   .section-title { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: -0.5px; margin-bottom: 16px; }
@@ -48,11 +48,11 @@
   .search-bar input::placeholder { color: rgba(255,255,255,0.2); }
   .search-btn { background: var(--orange); border: none; border-radius: 12px; padding: 13px 24px; color: white; font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; white-space: nowrap; }
   .search-btn:hover { opacity: 0.9; }
-
+ 
   .quick-tags { display: flex; gap: 8px; flex-wrap: wrap; }
   .tag { background: var(--card2); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; font-size: 0.82rem; color: var(--muted); cursor: pointer; transition: all 0.2s; }
   .tag:hover { border-color: var(--orange); color: var(--orange); }
-
+ 
   /* SUPPLIERS */
   .suppliers-section { margin-bottom: 28px; }
   .suppliers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 16px; }
@@ -66,7 +66,7 @@
   .gst-badge { display: inline-block; background: rgba(29,185,84,0.1); border: 1px solid rgba(29,185,84,0.25); border-radius: 20px; padding: 3px 10px; font-size: 0.75rem; color: var(--green); margin-bottom: 14px; }
   .order-btn { width: 100%; padding: 11px; background: var(--orange); border: none; border-radius: 10px; color: white; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
   .order-btn:hover { opacity: 0.9; }
-
+ 
   /* ORDER MODAL */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
   .modal-overlay.open { display: flex; }
@@ -84,7 +84,7 @@
   .cancel-btn { flex: 1; padding: 12px; background: transparent; border: 1px solid var(--border); border-radius: 10px; color: var(--muted); font-family: var(--font-body); font-size: 0.9rem; cursor: pointer; }
   .place-btn   { flex: 2; padding: 12px; background: var(--orange); border: none; border-radius: 10px; color: white; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; cursor: pointer; }
   .place-btn:hover { opacity: 0.9; }
-
+ 
   /* MY ORDERS */
   .orders-section { margin-bottom: 28px; }
   .order-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-top: 12px; }
@@ -99,16 +99,16 @@
   .status-out_for_delivery { background: rgba(255,92,26,0.12); color: var(--orange); }
   .status-delivered    { background: rgba(29,185,84,0.12); color: var(--green); }
   .status-rejected     { background: rgba(239,68,68,0.12); color: #F87171; }
-
+ 
   .empty-state { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 0.9rem; }
   .empty-icon  { font-size: 2.5rem; margin-bottom: 12px; }
-
+ 
   .success-toast { display: none; position: fixed; bottom: 28px; right: 28px; background: var(--green); color: white; padding: 14px 22px; border-radius: 12px; font-size: 0.9rem; font-weight: 500; z-index: 300; animation: slideUp 0.3s ease; }
   @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
+ 
   .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; margin-right: 6px; vertical-align: middle; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
+ 
   @media(max-width: 600px) {
     .stats { grid-template-columns: 1fr 1fr; }
     .item-row { grid-template-columns: 1fr 1fr; }
@@ -116,7 +116,7 @@
 </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav>
   <a href="index.html" class="logo">RAWW<span>MART</span></a>
@@ -125,15 +125,15 @@
     <button class="logout-btn" onclick="logout()">Log out</button>
   </div>
 </nav>
-
+ 
 <div class="main">
-
+ 
   <!-- WELCOME -->
   <div class="welcome">
     <h1 id="welcome-msg">Good day! 👋</h1>
     <p>Search for raw materials and order from suppliers near your stall.</p>
   </div>
-
+ 
   <!-- STATS -->
   <div class="stats">
     <div class="stat-card">
@@ -149,7 +149,7 @@
       <div class="stat-label">Search radius</div>
     </div>
   </div>
-
+ 
   <!-- SEARCH -->
   <div class="search-section">
     <div class="section-title">Search raw materials</div>
@@ -167,7 +167,7 @@
       <div class="tag" onclick="quickSearch('Sugar')">🍬 Sugar</div>
     </div>
   </div>
-
+ 
   <!-- NEARBY SUPPLIERS -->
   <div class="suppliers-section">
     <div class="section-title">Nearby suppliers <span style="font-size:0.8rem;color:var(--muted);font-family:var(--font-body);font-weight:300;" id="supplier-count"></span></div>
@@ -175,7 +175,7 @@
       <!-- Demo suppliers shown by default -->
     </div>
   </div>
-
+ 
   <!-- MY ORDERS -->
   <div class="orders-section">
     <div class="section-title">My orders</div>
@@ -186,9 +186,9 @@
       </div>
     </div>
   </div>
-
+ 
 </div>
-
+ 
 <!-- ORDER MODAL -->
 <div class="modal-overlay" id="order-modal">
   <div class="modal">
@@ -227,24 +227,24 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- SUCCESS TOAST -->
 <div class="success-toast" id="toast">✓ Order placed successfully!</div>
-
+ 
 <script>
   // ── Load user from localStorage ──
   const user  = JSON.parse(localStorage.getItem('user') || '{}');
   const token = localStorage.getItem('token');
-
+ 
   // Redirect if not logged in
   if (!token || !user.id) {
     window.location.href = 'vendor-login.html';
   }
-
+ 
   // Set welcome message
   document.getElementById('welcome-msg').textContent = `Good day, ${user.name || 'Vendor'}! 👋`;
   document.getElementById('nav-username').textContent = user.name || '';
-
+ 
   // ── Demo suppliers (shown by default) ──
   const demoSuppliers = [
     { _id: 'sup1', name: 'Sharma Traders', deliveryAddress: 'MIDC Bhosari, Pune', distance: '1.2 km', emoji: '🏭' },
@@ -252,20 +252,20 @@
     { _id: 'sup3', name: 'Pune Wholesale Hub', deliveryAddress: 'Market Yard, Pune', distance: '4.5 km', emoji: '📦' },
     { _id: 'sup4', name: 'Datta Agro Traders', deliveryAddress: 'Katraj, Pune', distance: '6.1 km', emoji: '🧺' },
   ];
-
+ 
   let currentSupplierId   = null;
   let currentSupplierName = null;
-
+ 
   // ── Render suppliers ──
   function renderSuppliers(suppliers) {
     const grid = document.getElementById('suppliers-grid');
     document.getElementById('supplier-count').textContent = `(${suppliers.length} found)`;
-
+ 
     if (suppliers.length === 0) {
       grid.innerHTML = '<div class="empty-state"><div class="empty-icon">📍</div><p>No suppliers found nearby. Try a different search.</p></div>';
       return;
     }
-
+ 
     grid.innerHTML = suppliers.map(s => `
       <div class="supplier-card">
         <div class="supplier-top">
@@ -281,28 +281,28 @@
       </div>
     `).join('');
   }
-
+ 
   // Show demo suppliers on load
   renderSuppliers(demoSuppliers);
-
+ 
   // ── Search suppliers ──
   function quickSearch(term) {
     document.getElementById('search-input').value = term;
     searchSuppliers();
   }
-
+ 
   async function searchSuppliers() {
     const query = document.getElementById('search-input').value.trim();
     const btn = document.querySelector('.search-btn');
     btn.innerHTML = '<span class="spinner"></span>Searching...';
     btn.disabled = true;
-
+ 
     try {
       // Try real API first
       const res = await fetch(`/api/orders/nearby-suppliers?latitude=18.5204&longitude=73.8567&maxDistance=10000`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
-
+ 
       if (res.ok) {
         const data = await res.json();
         if (data.suppliers && data.suppliers.length > 0) {
@@ -317,11 +317,11 @@
     } catch {
       renderSuppliers(demoSuppliers);
     }
-
+ 
     btn.innerHTML = 'Find Suppliers →';
     btn.disabled = false;
   }
-
+ 
   // ── Order modal ──
   function openModal(supplierId, supplierName) {
     currentSupplierId   = supplierId;
@@ -331,11 +331,11 @@
     document.getElementById('modal-notes').value = '';
     document.getElementById('order-modal').classList.add('open');
   }
-
+ 
   function closeModal() {
     document.getElementById('order-modal').classList.remove('open');
   }
-
+ 
   function addItemRow() {
     const container = document.getElementById('items-container');
     const row = document.createElement('div');
@@ -348,7 +348,7 @@
     `;
     container.appendChild(row);
   }
-
+ 
   // ── Place order ──
   async function placeOrder() {
     const names = document.querySelectorAll('.item-name');
@@ -356,35 +356,35 @@
     const units = document.querySelectorAll('.item-unit');
     const deliveryAddress = document.getElementById('modal-delivery-addr').value.trim();
     const notes = document.getElementById('modal-notes').value.trim();
-
+ 
     if (!deliveryAddress) {
       alert('Please enter your delivery address.');
       return;
     }
-
+ 
     const items = [];
     names.forEach((n, i) => {
       if (n.value.trim()) {
         items.push({ name: n.value.trim(), quantity: parseInt(qtys[i].value) || 1, unit: units[i].value });
       }
     });
-
+ 
     if (items.length === 0) {
       alert('Please add at least one item.');
       return;
     }
-
+ 
     const btn = document.querySelector('.place-btn');
     btn.innerHTML = '<span class="spinner"></span>Placing...';
     btn.disabled = true;
-
+ 
     try {
       const res = await fetch('/api/orders/place', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ supplierId: currentSupplierId, items, deliveryAddress, notes })
       });
-
+ 
       if (res.ok) {
         closeModal();
         showToast('✓ Order placed! Supplier has been notified.');
@@ -400,11 +400,11 @@
       showToast('✓ Order placed successfully!');
       addDemoOrder(items, deliveryAddress);
     }
-
+ 
     btn.innerHTML = 'Place Order →';
     btn.disabled = false;
   }
-
+ 
   // ── Demo order (when no real backend order) ──
   function addDemoOrder(items, address) {
     const list = document.getElementById('orders-list');
@@ -424,7 +424,7 @@
     list.prepend(card);
     updateStats();
   }
-
+ 
   // ── Load real orders from backend ──
   async function loadMyOrders() {
     try {
@@ -434,12 +434,12 @@
       if (!res.ok) return;
       const data = await res.json();
       const list = document.getElementById('orders-list');
-
+ 
       if (!data.orders || data.orders.length === 0) {
         list.innerHTML = '<div class="empty-state"><div class="empty-icon">📦</div><p>No orders yet.</p></div>';
         return;
       }
-
+ 
       list.innerHTML = data.orders.map(o => `
         <div class="order-card">
           <div class="order-top">
@@ -451,36 +451,36 @@
           <div style="margin-top:10px;"><span class="status-badge status-${o.status}">${statusLabel(o.status)}</span></div>
         </div>
       `).join('');
-
+ 
       updateStats(data.orders);
     } catch(e) {}
   }
-
+ 
   function statusLabel(s) {
     const map = { pending:'⏳ Pending', accepted:'✓ Accepted', preparing:'🔧 Preparing', out_for_delivery:'🚚 Out for delivery', delivered:'✅ Delivered', rejected:'✗ Rejected' };
     return map[s] || s;
   }
-
+ 
   function updateStats(orders) {
     const total  = orders ? orders.length : parseInt(document.getElementById('total-orders').textContent) + 1;
     const active = orders ? orders.filter(o => !['delivered','rejected'].includes(o.status)).length : 1;
     document.getElementById('total-orders').textContent  = total;
     document.getElementById('active-orders').textContent = active;
   }
-
+ 
   function showToast(msg) {
     const t = document.getElementById('toast');
     t.textContent = msg;
     t.style.display = 'block';
     setTimeout(() => t.style.display = 'none', 3500);
   }
-
+ 
   function logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     window.location.href = 'index.html';
   }
-
+ 
   // Load orders on page load
   loadMyOrders();
 </script>

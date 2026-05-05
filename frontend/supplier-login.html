@@ -61,15 +61,15 @@
 </style>
 </head>
 <body>
-
+ 
 <a href="page2.html" class="logo">RAWW<span>MART</span></a>
-
+ 
 <div class="form-box">
   <div class="tabs">
     <div class="tab active" onclick="switchTab('login')">Sign In</div>
     <div class="tab" onclick="switchTab('register')">Register</div>
   </div>
-
+ 
   <!-- ── LOGIN ── -->
   <div id="login-form">
     <div class="form-header">
@@ -85,7 +85,7 @@
     <button class="btn-main" onclick="doLogin()">Sign In</button>
     <p class="note">New supplier? <a onclick="switchTab('register')">Register here</a></p>
   </div>
-
+ 
   <!-- ── REGISTER ── -->
   <div id="register-form" style="display:none;">
     <div class="form-header">
@@ -99,7 +99,7 @@
       <div class="step-dot" id="sdot4"></div>
     </div>
     <div class="error-msg" id="reg-error"></div>
-
+ 
     <!-- Step 1: Details -->
     <div class="step active" id="sstep1">
       <label>Full name / Business name</label>
@@ -122,7 +122,7 @@
       <input type="text" id="s-daddr" placeholder="Warehouse B3, MIDC Bhosari, Pune"/>
       <button class="btn-main" onclick="goSStep(2)">Continue →</button>
     </div>
-
+ 
     <!-- Step 2: OTP -->
     <div class="step" id="sstep2">
       <label>Verify your mobile number</label>
@@ -141,7 +141,7 @@
       <button class="btn-main" onclick="verifyOTP()">Verify & Continue →</button>
       <p class="note"><a onclick="goSStep(1)">← Back</a></p>
     </div>
-
+ 
     <!-- Step 3: GST -->
     <div class="step" id="sstep3">
       <label>GST Number (GSTIN)</label>
@@ -155,7 +155,7 @@
       <button class="btn-main" id="gst-next-btn" onclick="doRegister()" style="margin-top:16px;" disabled>Complete Registration →</button>
       <p class="note"><a onclick="goSStep(2)">← Back</a></p>
     </div>
-
+ 
     <!-- Step 4: Done -->
     <div class="step" id="sstep4">
       <div style="text-align:center;padding:20px 0;">
@@ -170,40 +170,40 @@
     </div>
   </div>
 </div>
-
+ 
 <a href="page2.html" class="back-link">← Choose different role</a>
-
+ 
 <script>
   function switchTab(t) {
     document.querySelectorAll('.tab').forEach((el,i) => el.classList.toggle('active', (i===0&&t==='login')||(i===1&&t==='register')));
     document.getElementById('login-form').style.display = t==='login' ? 'block' : 'none';
     document.getElementById('register-form').style.display = t==='register' ? 'block' : 'none';
   }
-
+ 
   function goSStep(n) {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
     document.getElementById('sstep'+n).classList.add('active');
     for(let i=1;i<=4;i++) document.getElementById('sdot'+i).classList.toggle('done', i<n);
   }
-
+ 
   function mOTP(el, idx) {
     if(el.value.length===1) {
       const next = el.parentElement.children[idx];
       if(next) next.focus();
     }
   }
-
+ 
   function sendOTP() {
     alert('OTP sent! (Demo: use any 6 digits)');
   }
-
+ 
   function verifyOTP() {
     const otp = Array.from(document.querySelectorAll('.otp-group input')).map(i => i.value).join('');
     if(otp.length < 6) { showError('reg-error','Enter full 6-digit OTP.'); return; }
     document.getElementById('otp-ok').style.display = 'block';
     setTimeout(() => goSStep(3), 800);
   }
-
+ 
   function verifyGST() {
     const val = document.getElementById('gst-input').value.trim().toUpperCase();
     const gstRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
@@ -218,7 +218,7 @@
       }
     }, 800);
   }
-
+ 
   async function doLogin() {
     const emailOrMobile = document.getElementById('login-id').value.trim();
     const password = document.getElementById('login-password').value.trim();
@@ -248,7 +248,7 @@
       btn.innerHTML = 'Sign In'; btn.disabled = false;
     }
   }
-
+ 
   async function doRegister() {
     const name     = document.getElementById('s-name').value.trim();
     const mobile   = document.getElementById('s-mobile').value.trim();
@@ -284,7 +284,7 @@
       showError('reg-error','Cannot connect to server.');
     }
   }
-
+ 
   function showError(id, msg) {
     const el = document.getElementById(id);
     el.textContent = msg;
